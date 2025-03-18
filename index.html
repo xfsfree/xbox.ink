@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:description" content="Payment system all in one - by Undo">
+    <link rel="shortcut icon" href="favicons/img-xboxfs.ico" type="image/x-icon">
+    <title>Undo Payment</title>
+    <link rel="stylesheet" href="css/css-font-awsome.min.css">
+    <link rel="stylesheet" href="css/css-bootstrap.min.css">
+    <link rel="stylesheet" href="css/css-carousel.theme.min.css">
+    <link rel="stylesheet" href="css/css-carousel.min.css">
+    <link rel="stylesheet" href="css/css-style.css">
+</head>
+<body style="background-image: url('images/bg.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+    <header class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center mt-3 mb-3">
+                    <h1 style="background-image: radial-gradient(92% 75% at 18.2% 90.5%, rgb(255, 216, 121) 0%, rgb(255, 255, 255) 100%); -webkit-background-clip: text; color: transparent; text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); transform: translate(-5%, 10%);">
+                        Undo Payment Page
+                    </h1>
+                </div>
+                <button class="custom-button">Join Support Server</button>
+            </div>
+        </div>
+    </header>
+    <div class="modal fade" id="checkoutModal" tabindex="-1" aria-labelledby="checkoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="checkoutModalLabel">Checkout</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h4 id="productTitle"></h4>
+                    <p id="productDescription"></p>
+                    <p id="productPrice"></p>
+                    <div class="mb-3">
+                        <label for="discordUsername" class="form-label">Discord Username</label>
+                        <input type="text" class="form-control" id="discordUsername" placeholder="Enter your Discord username" required>
+                    </div>
+                    <div class="payment-options">
+                        <button class="btn pay-with-card w-100 mb-2" onclick="payWithCard()" style="background: #27292d; display: flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid #ccc;">
+                            <img src="images/visa.png" alt="Visa">
+                            <img src="images/mastercard.png" alt="Mastercard">
+                            <img src="images/amex.png" alt="Amex" style="width: 30px; height: 30px;">
+                            <img src="images/discover.jpg" alt="Discover" style="width: 30px; height: 20px;">
+                            <img src="images/union.png" alt="UnionPay" style="height: 30px; width: 30px;">
+                        </button>
+                        <button class="btn pay-with-paypal w-100 mb-2" onclick="payWithPayPal()" style="background-color: #ffc43b; align-items: center;">
+                            <img src="images/paypal.png" alt="PayPal" style="height: 28px; width: 100px;">
+                        </button>
+                        <button class="btn pay-with-bank w-100 mb-2" onclick="payWithBank()">Pay with Bank Transfer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="paypalModal" tabindex="-1" aria-labelledby="paypalModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="paypalModalLabel">Pay with PayPal</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="background-color: #e9eef7;">
+                    <p>Amount to pay: <strong id="paypalAmount"></strong></p>
+                    <p>PayPal transactions must be sent manually with friends & family method for security purposes.</p>
+                    <p>Send your payment to: <a href="https://paypal.me/xzbv" class="paypal-link" target="_blank">https://paypal.me/xzbv</a></p>
+                    <p>After payment, provide your transaction ID to support ticket in Discord server.</p>
+                </div>
+                <div class="modal-footer" style="background-color: #c4d7f8;">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="bankModal" tabindex="-1" aria-labelledby="bankModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="bankModalLabel">Pay with Bank Transfer</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="background-color: #e9eef7;">
+                    <p>Bank transfer option is not available yet. Please check back later.</p>
+                </div>
+                <div class="modal-footer" style="background-color: #c4d7f8;">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="main_content mt-0 pt-0">
+        <div class="container">
+            <div class="content_wrp">
+                <div class="home-demo">
+                    <h3 class="section_title" style="color: #c00000;">Follower Bot</h3>
+                    <div class="owl-carousel owl-theme">
+                        <div class="item" data-tilt>
+                            <div class="item_wrp">
+                                <div class="img">
+                                    <a href="#" onclick="openCheckoutModal('Xbox Followers', 'Pay for xbox followers only so you wont need to deal with anything else. You can choose the amount while paying.', 'Price: $2 per 1k', 'https://buy.stripe.com/14kbL2eZDcvx3Ic14q')">
+                                        <img src="images/2usdper1k.png" alt="">
+                                    </a>
+                                    <div class="download">
+                                        <span class="downloadbtnSpan" onclick="Download_ID('9P8RQH67TTT1')">
+                                            <i class="fa-solid fa-credit-card"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <h1 class="title">$2 per 1k</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item" data-tilt>
+                            <div class="item_wrp">
+                                <div class="img">
+                                    <a href="#" onclick="openCheckoutModal('1 Day Follower Bot', 'Access to Follower Bot for 1 day. Usable on phone and PC.', 'Price: $10 USD', 'https://buy.stripe.com/dR65mE3gV7bd0w0aEE')">
+                                        <img src="images/1dayfb.png" alt="">
+                                    </a>
+                                    <div class="download">
+                                        <span class="downloadbtnSpan" onclick="Download_ID('9P8RQH67TTT1')">
+                                            <i class="fa-solid fa-credit-card"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <h1 class="title">$10 USD</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item" data-tilt>
+                            <div class="item_wrp">
+                                <div class="img">
+                                    <a href="#" onclick="openCheckoutModal('1 Week Follower Bot', 'Access to Follower Bot for 1 week. Usable on phone and PC.', 'Price: $20 USD', 'https://buy.stripe.com/6oE8yQ9Fj3Z17YscMU')">
+                                        <img src="images/1weekfb.png" alt="">
+                                    </a>
+                                    <div class="download">
+                                        <span class="downloadbtnSpan" onclick="Download_ID('9NB54XTF084M')">
+                                            <i class="fa-solid fa-credit-card"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <h1 class="title">$20 USD</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item" data-tilt>
+                            <div class="item_wrp">
+                                <div class="img">
+                                    <a href="#" onclick="openCheckoutModal('1 Month Follower Bot', 'Access to Follower Bot for 1 month. Usable on phone and PC.', 'Price: $30 USD', 'https://buy.stripe.com/00g5mE3gV0MP2E83cl')">
+                                        <img src="images/1monthfb.png" alt="">
+                                    </a>
+                                    <div class="download">
+                                        <span class="downloadbtnSpan" onclick="Download_ID('9P5HV0HVZTSK')">
+                                            <i class="fa-solid fa-credit-card"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <h1 class="title">$30 USD</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item" data-tilt>
+                            <div class="item_wrp">
+                                <div class="img">
+                                    <a href="#" onclick="openCheckoutModal('Lifetime Follower Bot', 'Access to Follower Bot for lifetime. Usable on phone and PC.', 'Price: $75 USD', 'https://buy.stripe.com/4gw16o7xbcvxbaEeV4')">
+                                        <img src="images/lifetimefb.png" alt="">
+                                    </a>
+                                    <div class="download">
+                                        <span class="downloadbtnSpan" onclick="Download_ID('BX3M8L83BBRW')">
+                                            <i class="fa-solid fa-credit-card"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <h1 class="title">$75 USD</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="main_content mt-0 pt-0">
+        <div class="container">
+            <div class="content_wrp">
+                <div class="home-demo">
+                    <h3 class="section_title" style="color: #003a93;">LFG Post Spammer</h3>
+                    <div class="owl-carousel owl-theme">
+                        <div class="item" data-tilt>
+                            <div class="item_wrp">
+                                <div class="img">
+                                    <a href="#" onclick="openCheckoutModal('1 Day LFG Post Spammer', 'Access to LFG Bot for 1 day. Usable on phone and PC.', 'Price: $10 USD', 'https://buy.stripe.com/5kAg1i5p3gLNguY5kv')">
+                                        <img src="images/1daylfg.png" alt="">
+                                    </a>
+                                    <div class="download">
+                                        <span class="downloadbtnSpan" onclick="Download_ID('C1QJM5XT9SXV')">
+                                            <i class="fa-solid fa-credit-card"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <h1 class="title">$10 USD</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item" data-tilt>
+                            <div class="item_wrp">
+                                <div class="img">
+                                    <a href="#" onclick="openCheckoutModal('1 Week LFG Post Spammer', 'Access to LFG Bot for 1 week. Usable on phone and PC.', 'Price: $20 USD', 'https://buy.stripe.com/9AQ2ascRv2UXemQ6ot')">
+                                        <img src="images/1weeklfg.png" alt="">
+                                    </a>
+                                    <div class="download">
+                                        <span class="downloadbtnSpan" onclick="Download_ID('C10GWTNNNBZ8')">
+                                            <i class="fa-solid fa-credit-card"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <h1 class="title">$20 USD</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item" data-tilt>
+                            <div class="item_wrp">
+                                <div class="img">
+                                    <a href="#" onclick="openCheckoutModal('1 Month LFG Post Spammer', 'Access to LFG Bot for 1 month. Usable on phone and PC.', 'Price: $50 USD', 'https://buy.stripe.com/5kA5mEaJn0MP2E828b')">
+                                        <img src="images/1monthlfg.png" alt="">
+                                    </a>
+                                    <div class="download">
+                                        <span class="downloadbtnSpan" onclick="Download_ID('_____product_Id_to_download_____')">
+                                            <i class="fa-solid fa-credit-card"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <h1 class="title">$50 USD</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item" data-tilt>
+                            <div class="item_wrp">
+                                <div class="img">
+                                    <a href="#" onclick="openCheckoutModal('Lifetime LFG Post Spammer', 'Access to LFG Bot for lifetime. Usable on phone and PC.', 'Price: $100 USD', 'https://buy.stripe.com/4gwcP604Janp5Qk002')">
+                                        <img src="images/lifetimelfg.png" alt="">
+                                    </a>
+                                    <div class="download">
+                                        <span class="downloadbtnSpan" onclick="Download_ID('_____product_Id_to_download_____')">
+                                            <i class="fa-solid fa-credit-card"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <h1 class="title">$100 USD</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="main_content mt-0 pt-0">
+        <div class="container">
+            <div class="content_wrp">
+                <div class="home-demo">
+                    <h3 class="section_title" style="color: #0015ff;">Gamertag Autoclaimer</h3>
+                    <div class="owl-carousel owl-theme">
+                        <div class="item" data-tilt>
+                            <div class="item_wrp">
+                                <div class="img">
+                                    <a href="#" onclick="openCheckoutModal('1 Day Gamertag Autoclaimer', 'Access to Gamertag Autoclaimer Tool for 1 day', 'Price: $10 USD', 'https://buy.stripe.com/28o5mEbNr535fqU28k')">
+                                        <img src="images/1dayac.png" alt="">
+                                    </a>
+                                    <div class="download">
+                                        <span class="downloadbtnSpan" onclick="Download_ID('9P8RQH67TTT1')">
+                                            <i class="fa-solid fa-credit-card"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <h1 class="title">$10 USD</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item" data-tilt>
+                            <div class="item_wrp">
+                                <div class="img">
+                                    <a href="#" onclick="openCheckoutModal('1 Week Gamertag Autoclaimer', 'Access to Gamertag Autoclaimer Tool for 1 week', 'Price: $20 USD', 'https://buy.stripe.com/dR65mE3gV7bdemQcMZ')">
+                                        <img src="images/1weekac.png" alt="">
+                                    </a>
+                                    <div class="download">
+                                        <span class="downloadbtnSpan" onclick="Download_ID('_____product_Id_to_download_____')">
+                                            <i class="fa-solid fa-credit-card"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <h1 class="title">$20 USD</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item" data-tilt>
+                            <div class="item_wrp">
+                                <div class="img">
+                                    <a href="#" onclick="openCheckoutModal('1 Month Gamertag Autoclaimer', 'Access to Gamertag Autoclaimer Tool for 1 month', 'Price: $50 USD', 'https://buy.stripe.com/28o9CU7xb9jlfqU28m')">
+                                        <img src="images/1monthac.png" alt="">
+                                    </a>
+                                    <div class="download">
+                                        <span class="downloadbtnSpan" onclick="Download_ID('_____product_Id_to_download_____')">
+                                            <i class="fa-solid fa-credit-card"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <h1 class="title">$50 USD</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item" data-tilt>
+                            <div class="item_wrp">
+                                <div class="img">
+                                    <a href="#" onclick="openCheckoutModal('Lifetime Gamertag Autoclaimer', 'Access to Gamertag Autoclaimer Tool for lifetime', 'Price: $150 USD', 'https://buy.stripe.com/bIY16o6t7eDFdiM6oD')">
+                                        <img src="images/lifetimeac.png" alt="">
+                                    </a>
+                                    <div class="download">
+                                        <span class="downloadbtnSpan" onclick="Download_ID('_____product_Id_to_download_____')">
+                                            <i class="fa-solid fa-credit-card"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <h1 class="title">$150 USD</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="main_content mt-0 pt-0">
+        <div class="container">
+            <div class="content_wrp">
+                <div class="home-demo">
+                    <h3 class="section_title" style="color: #009302;">Gamerscore Mod</h3>
+                    <div class="owl-carousel owl-theme">
+                        <div class="item" data-tilt>
+                            <div class="item_wrp">
+                                <div class="img">
+                                    <a href="#" onclick="openCheckoutModal('50K Gamerscore Mod', 'Boost your Xbox gamerscore by 50,000', 'Price: $10 USD', 'https://buy.stripe.com/8wMg1ieZDeDF7Ys7sI')">
+                                        <img src="images/50kscore.png" alt="">
+                                    </a>
+                                    <div class="download">
+                                        <span class="downloadbtnSpan" onclick="Download_ID('_____product_Id_to_download_____')">
+                                            <i class="fa-solid fa-credit-card"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <h1 class="title">$10 USD</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item" data-tilt>
+                            <div class="item_wrp">
+                                <div class="img">
+                                    <a href="#" onclick="openCheckoutModal('200K Gamerscore Mod', 'Boost your Xbox gamerscore by 200,000', 'Price: $20 USD', 'https://buy.stripe.com/28o4iAcRv0MP0w0bIZ')">
+                                        <img src="images/200kscore.png" alt="">
+                                    </a>
+                                    <div class="download">
+                                        <span class="downloadbtnSpan" onclick="Download_ID('_____product_Id_to_download_____')">
+                                            <i class="fa-solid fa-credit-card"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <h1 class="title">$20 USD</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item" data-tilt>
+                            <div class="item_wrp">
+                                <div class="img">
+                                    <a href="#" onclick="openCheckoutModal('500K Gamerscore Mod', 'Boost your Xbox gamerscore by 500,000', 'Price: $30 USD', 'https://buy.stripe.com/fZecP6g3H5351A46oG')">
+                                        <img src="images/500kscore.png" alt="">
+                                    </a>
+                                    <div class="download">
+                                        <span class="downloadbtnSpan" onclick="Download_ID('_____product_Id_to_download_____')">
+                                            <i class="fa-solid fa-credit-card"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <h1 class="title">$30 USD</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item" data-tilt>
+                            <div class="item_wrp">
+                                <div class="img">
+                                    <a href="#" onclick="openCheckoutModal('1M Gamerscore Mod', 'Boost your Xbox gamerscore by 1,000,000', 'Price: $50 USD', 'https://buy.stripe.com/4gw4iA18NanpemQeVd')">
+                                        <img src="images/1mscore.png" alt="">
+                                    </a>
+                                    <div class="download">
+                                        <span class="downloadbtnSpan" onclick="Download_ID('_____product_Id_to_download_____')">
+                                            <i class="fa-solid fa-credit-card"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <h1 class="title">$50 USD</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="js/js-jquery.min.js"></script>
+    <script src="js/js-carousel.min.js"></script>
+    <script src="js/js-bootstrap.bundle.min.js"></script>
+    <script src="js/js-font-awsome.min.js"></script>
+    <script src="js/js-vanilla-tilt.min.js"></script>
+    <script src="js/js-main.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="js/js-core.js"></script>
+    <script src="js/2282-js-setupCarousel.js"></script>
+    <script src="js/3557-js-custom.js"></script>
+    <script>
+        function openCheckoutModal(title, description, price, stripeLink) {
+            document.getElementById('productTitle').innerText = title;
+            document.getElementById('productDescription').innerText = description;
+            document.getElementById('productPrice').innerText = price;
+            document.getElementById('paypalAmount').innerText = price;
+            window.currentStripeLink = stripeLink;
+            const checkoutModal = new bootstrap.Modal(document.getElementById('checkoutModal'), {});
+            checkoutModal.show();
+        }
+        function validateInput() {
+            const input = document.getElementById('discordUsername');
+            if (!input.value.trim()) {
+                input.classList.add('invalid-input');
+                input.style.animation = 'none';
+                setTimeout(() => {
+                    input.style.animation = '';
+                }, 10);
+                return false;
+            }
+            input.classList.remove('invalid-input');
+            return true;
+        }
+        function payWithCard() {
+            if (!validateInput()) return;
+            if (window.currentStripeLink) {
+                window.location.href = window.currentStripeLink;
+            } else {
+                alert('Payment link is not available.');
+            }
+        }
+        function payWithPayPal() {
+            if (!validateInput()) return;
+            const paypalModal = new bootstrap.Modal(document.getElementById('paypalModal'), {});
+            paypalModal.show();
+        }
+        function payWithBank() {
+            if (!validateInput()) return;
+            const bankModal = new bootstrap.Modal(document.getElementById('bankModal'), {});
+            bankModal.show();
+        }
+    </script>
+</body>
+</html>
