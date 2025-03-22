@@ -165,9 +165,7 @@ header.header a.header_link {
 }
 
 .modal-content {
-    transform: scale(0.9);
-    opacity: 0;
-    transition: all 0.3s ease-out;
+  background-color: #f8f9fa;
 }
 
 .modal-content .modal-body {
@@ -177,7 +175,6 @@ header.header a.header_link {
 .modal-content .modal-footer {
   background-color: #f8f9fa;
 }
-
 
 .paypal-link {
   color: #0070ba;
