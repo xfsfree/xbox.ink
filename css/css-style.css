@@ -6,6 +6,8 @@ body {
   background-color: #000;
   background-size: cover;
   background-repeat: no-repeat;
+    user-select: none;
+    -webkit-user-drag: none;
 }
 
 .download a {
@@ -105,9 +107,7 @@ header.header a.header_link {
   box-shadow: 0 0 10px 0 aqua;
 }
 
-.col-12.d-flex.justify-content-center.mt-3.mb-3 img {
-  width: 100%;
-}
+
 
 .downloadbtnSpan {
   position: absolute;
@@ -126,7 +126,7 @@ header.header a.header_link {
   cursor: pointer;
 }
 
-/* Kod1'den aktarılan CSS kodları */
+
 .payment-options .btn {
   position: relative;
   overflow: hidden;
@@ -230,4 +230,118 @@ header.header a.header_link {
 .custom-button:active {
   transform: translateY(0);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+    .col-12::before,
+    .col-12::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 1px; /* Thickness of the lines */
+        background-color: rgba(255, 255, 255, 0.15);; /* Color of the lines */
+    }
+
+    .col-12::before {
+        top: 0; /* Position the top line */
+    }
+
+    .col-12::after {
+        bottom: 0; /* Position the bottom line */
+    }
+
+                    .undo-image{width:100px;height:100px;position:relative;right:70px;}@media (max-width:768px){.undo-image{width:80px;height:80px;right:15%;}}@media (max-width:576px){.undo-image{width:60px;height:60px;right:15%;margin-right:10px;}}
+
+                    .custom-button {
+    osition: relative;
+    padding: 10px 30px;
+    margin: 0 15px;
+    color: #21ebff;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 20px;
+    overflow: hidden;
+    transition: 0.5s;
+    -webkit-box-reflect: below 1px linear-gradient(transparent, #0003);
+}
+
+
+
+.custom-button {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto; /* Yatayda merkezler */
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+
+.custom-button:hover {
+    color: #255784;
+    background: #21ebff;
+    box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
+    transition-delay: 0s;
+}
+
+.custom-button span {
+    position: absolute;
+    display: block;
+}
+
+.custom-button span:nth-child(1) {
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #2196f3);
+}
+
+.custom-button:hover span:nth-child(1) {
+    left: 100%;
+    transition: 1s;
+}
+
+.custom-button span:nth-child(3) {
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(270deg, transparent, #2196f3);
+}
+
+.custom-button:hover span:nth-child(3) {
+    right: 100%;
+    transition: 1s;
+    transition-delay: 0.5s;
+}
+
+.custom-button span:nth-child(2) {
+    top: -100%;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, #2196f3);
+}
+
+.custom-button:hover span:nth-child(2) {
+    top: 100%;
+    transition: 1s;
+    transition-delay: 0.25s;
+}
+
+.custom-button span:nth-child(4) {
+    bottom: -100%;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, #2196f3);
+}
+
+.custom-button:hover span:nth-child(4) {
+    bottom: 100%;
+    transition: 1s;
+    transition-delay: 0.75s;
 }
