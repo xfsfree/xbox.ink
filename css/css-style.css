@@ -43,6 +43,8 @@ section.main {
   font-size: 100%;
   padding: 15px;
   color: #fff;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
 }
 
 .download a {
