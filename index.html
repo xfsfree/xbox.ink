@@ -13,25 +13,27 @@
     <link rel="stylesheet" href="css/css-carousel.min.css">
     <link rel="stylesheet" href="css/css-style.css">
 </head>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-6M6RJRL3V3"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-6M6RJRL3V3');
-</script>
 <body style="background-image: url('images/bg.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+    <div id="loading-screen">
+        <div class="loader"></div>
+        <div class="loading-text">
+            <span>L</span>
+            <span>O</span>
+            <span>A</span>
+            <span>D</span>
+            <span>I</span>
+            <span>N</span>
+            <span>G</span>
+        </div>
+    </div>
     <header class="header">
         <div class="container">
             <div class="row">
-                <div class="col-12 d-flex justify-content-center mt-3 mb-3">
-                    <h1 style="background-image: radial-gradient(92% 75% at 18.2% 90.5%, rgb(255, 216, 121) 0%, rgb(255, 255, 255) 100%); -webkit-background-clip: text; color: transparent; text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); transform: translate(-5%, 10%);">
-                        Undo Xbox Services
-                    </h1>
+                <div class="col-12 d-flex justify-content-center mt-3 mb-3 position-relative">
+                    <a href="https://discord.gg/gamertags"><img src="images/undo.png" class="undo-image"></a>
+                    <h1 style="background-image: radial-gradient(92% 75% at 18.2% 90.5%, rgb(255, 216, 121) 0%, rgb(255, 255, 255) 100%); -webkit-background-clip: text; color: transparent; text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); transform: translate(-5%, 25%);">Undo Xbox Services</h1>
                 </div>
-               <a href="https://discord.gg/gamertags" class="custom-button">Join Discord server</a>
+                <button class="custom-button" onclick="window.location.href='https://discord.gg/gamertags'">Join Support Server</button>
             </div>
         </div>
     </header>
@@ -59,14 +61,12 @@
                             <img src="images/union.png" alt="UnionPay" style="height: 30px; width: 30px;">
                         </button>
                         <button class="btn pay-with-card w-100 mb-2" onclick="payWithCard()" style="background: black; display: flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid #ccc;">
-                            <img src="images/applepay.png" alt="Apple Pay" style="width: 65px; height: 30px;">
+                            <img src="images/applepay.png" alt="Apple Pay" style="width: 65px; height: 29px;">
                         </button>
                         <button class="btn pay-with-paypal w-100 mb-2" onclick="payWithPayPal()" style="background-color: #ffc43b; align-items: center;">
                             <img src="images/paypal.png" alt="PayPal" style="height: 28px; width: 100px;">
                         </button>
-
-                        <button class="btn pay-with-bank w-100 mb-2" onclick="payWithBank()">Pay with Bank Transfer</button>
-
+                        <button class="btn pay-with-bank w-100 mb-2" onclick="payWithBank()">Pay with Bank Transfer (U.S.A only)</button>
                     </div>
                 </div>
             </div>
@@ -84,22 +84,6 @@
                     <p>PayPal transactions must be sent manually with friends & family method for security purposes.</p>
                     <p>Send your payment to: <a href="https://paypal.me/xzbv" class="paypal-link" target="_blank">https://paypal.me/exilorn</a></p>
                     <p>After payment, provide your transaction ID to support ticket in Discord server.</p>
-                </div>
-                <div class="modal-footer" style="background-color: #c4d7f8;">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="bankModal" tabindex="-1" aria-labelledby="bankModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="bankModalLabel">Pay with Bank Transfer</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body" style="background-color: #e9eef7;">
-                    <p>Bank transfer option is not available yet. Please check back later.</p>
                 </div>
                 <div class="modal-footer" style="background-color: #c4d7f8;">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -438,6 +422,79 @@
                     </div>
                 </div>
             </div>
+            <div class="home-demo">
+                <h3 class="section_title" style="color: #00c2ff;">Message Spammer Bot</h3>
+                <div class="owl-carousel owl-theme">
+                    <div class="item" data-tilt>
+                        <div class="item_wrp">
+                            <div class="img">
+                                <a href="#" onclick="openCheckoutModal('1 Day Message Spammer Bot', 'Access to Message Spammer Bot for 1 day. Usable on phone and PC.', 'Price: $10 USD', 'https://buy.stripe.com/6oEcP69Fj6792E8cN9')">
+                                    <img src="images/1daymsg.png" alt="">
+                                </a>
+                                <div class="download">
+                                    <span class="downloadbtnSpan" onclick="Download_ID('_____product_Id_to_download_____')">
+                                        <i class="fa-solid fa-credit-card"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="content">
+                                <h1 class="title">$10 USD</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item" data-tilt>
+                        <div class="item_wrp">
+                            <div class="img">
+                                <a href="#" onclick="openCheckoutModal('1 Week Message Spammer Bot', 'Access to Message Spammer Bot for 1 week. Usable on phone and PC.', 'Price: $20 USD', 'https://buy.stripe.com/fZe7uMbNr1QT0w0cNa')">
+                                    <img src="images/1weekmsg.png" alt="">
+                                </a>
+                                <div class="download">
+                                    <span class="downloadbtnSpan" onclick="Download_ID('_____product_Id_to_download_____')">
+                                        <i class="fa-solid fa-credit-card"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="content">
+                                <h1 class="title">$20 USD</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item" data-tilt>
+                        <div class="item_wrp">
+                            <div class="img">
+                                <a href="#" onclick="openCheckoutModal('1 Month Message Spammer Bot', 'Access to Message Spammer Bot for 1 month. Usable on phone and PC.', 'Price: $30 USD', 'https://buy.stripe.com/dR63ew7xbanp6Uo14t')">
+                                    <img src="images/1monthmsg.png" alt="">
+                                </a>
+                                <div class="download">
+                                    <span class="downloadbtnSpan" onclick="Download_ID('_____product_Id_to_download_____')">
+                                        <i class="fa-solid fa-credit-card"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="content">
+                                <h1 class="title">$30 USD</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item" data-tilt>
+                        <div class="item_wrp">
+                            <div class="img">
+                                <a href="#" onclick="openCheckoutModal('Lifetime Message Spammer Bot', 'Access to Message Spammer Bot for lifetime. Usable on phone and PC.', 'Price: $50 USD', 'https://buy.stripe.com/cN23ew4kZdzB6Uo6oO')">
+                                    <img src="images/lifetimemsg.png" alt="">
+                                </a>
+                                <div class="download">
+                                    <span class="downloadbtnSpan" onclick="Download_ID('_____product_Id_to_download_____')">
+                                        <i class="fa-solid fa-credit-card"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="content">
+                                <h1 class="title">$50 USD</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
     <script src="js/js-jquery.min.js"></script>
@@ -488,9 +545,49 @@
         }
         function payWithBank() {
             if (!validateInput()) return;
-            const bankModal = new bootstrap.Modal(document.getElementById('bankModal'), {});
-            bankModal.show();
+            if (window.currentStripeLink) {
+                window.location.href = window.currentStripeLink;
+            } else {
+                alert('Payment link is not available.');
+            }
         }
+
+        window.addEventListener('load', function() {
+            const loadingScreen = document.getElementById('loading-screen');
+            loadingScreen.classList.add('fade-out');
+
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+            }, 500);
+        });
     </script>
 </body>
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h3 class="footer-title">Undo Xbox Services</h3>
+                <p class="footer-text">
+                    Undo Xbox Services offers powerful tools like bot followers, gamerscore mods, and spammers. Elevate your Xbox experience with fast, reliable, and easy-to-use solutions
+                </p>
+                <div class="footer-social">
+                    <a href="https://discord.gg/gamertags" target="_blank" class="social-link">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@PQZS" target="_blank" class="social-link">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://api.whatsapp.com/send/?phone=79969176905&text&type=phone_number&app_absent=0" target="_blank" class="social-link">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="copyright">
+                &copy; 2025 Undo Xbox Services
+            </p>
+        </div>
+    </div>
+</footer>
 </html>
