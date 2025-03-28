@@ -53,40 +53,21 @@
                         <input type="text" class="form-control" id="discordUsername" placeholder="Enter your Discord username" required>
                     </div>
                     <div class="payment-options">
-                        <button class="btn pay-with-card w-100 mb-2" onclick="payWithCard()" style="background: #27292d; display: flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid #ccc;">
+                        <button class="btn pay-with-card w-100 mb-2" onclick="processPayment()" style="background: #27292d; display: flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid #ccc;">
                             <img src="images/visa.png" alt="Visa" loading="lazy">
                             <img src="images/mastercard.png" alt="Mastercard" loading="lazy">
                             <img src="images/amex.png" alt="Amex" style="width: 30px; height: 30px;" loading="lazy">
                             <img src="images/discover.jpg" alt="Discover" style="width: 30px; height: 20px;" loading="lazy">
                             <img src="images/union.png" alt="UnionPay" style="height: 30px; width: 30px;" loading="lazy">
                         </button>
-                        <button class="btn pay-with-card w-100 mb-2" onclick="payWithCard()" style="background: black; display: flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid #ccc;">
+                        <button class="btn pay-with-card w-100 mb-2" onclick="processPayment()" style="background: black; display: flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid #ccc;">
                             <img src="images/applepay.png" alt="Apple Pay" style="width: 65px; height: 29px;" loading="lazy">
                         </button>
-                        <button class="btn pay-with-paypal w-100 mb-2" onclick="payWithPayPal()" style="background-color: #ffc43b; align-items: center;">
+                        <button class="btn pay-with-paypal w-100 mb-2" onclick="processPayment()" style="background-color: #ffc43b; align-items: center;">
                             <img src="images/paypal.png" alt="PayPal" style="height: 28px; width: 100px;" loading="lazy">
                         </button>
-                        <button class="btn pay-with-bank w-100 mb-2" onclick="payWithBank()">Pay with Bank Transfer (Some countries only)</button>
+                        <button class="btn pay-with-bank w-100 mb-2" onclick="processPayment()">Pay with Bank Transfer (Some countries only)</button>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="paypalModal" tabindex="-1" aria-labelledby="paypalModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="paypalModalLabel">Pay with PayPal</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body" style="background-color: #e9eef7;">
-                    <p>Amount to pay: <strong id="paypalAmount"></strong></p>
-                    <p>PayPal transactions must be sent manually with friends & family method for security purposes.</p>
-                    <p>Send your payment to: <a href="https://paypal.me/exilorn" class="paypal-link" target="_blank">https://paypal.me/exilorn</a></p>
-                    <p>After payment, provide your transaction ID to support ticket in Discord server.</p>
-                </div>
-                <div class="modal-footer" style="background-color: #c4d7f8;">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -667,11 +648,11 @@
             document.getElementById('productTitle').innerText = title;
             document.getElementById('productDescription').innerText = description;
             document.getElementById('productPrice').innerText = price;
-            document.getElementById('paypalAmount').innerText = price;
             window.currentStripeLink = stripeLink;
             const checkoutModal = new bootstrap.Modal(document.getElementById('checkoutModal'), {});
             checkoutModal.show();
         }
+        
         function validateInput() {
             const input = document.getElementById('discordUsername');
             if (!input.value.trim()) {
@@ -685,7 +666,8 @@
             input.classList.remove('invalid-input');
             return true;
         }
-        function payWithCard() {
+        
+        function processPayment() {
             if (!validateInput()) return;
             if (window.currentStripeLink) {
                 window.location.href = window.currentStripeLink;
@@ -693,19 +675,7 @@
                 alert('Payment link is not available.');
             }
         }
-        function payWithPayPal() {
-            if (!validateInput()) return;
-            const paypalModal = new bootstrap.Modal(document.getElementById('paypalModal'), {});
-            paypalModal.show();
-        }
-        function payWithBank() {
-            if (!validateInput()) return;
-            if (window.currentStripeLink) {
-                window.location.href = window.currentStripeLink;
-            } else {
-                alert('Payment link is not available.');
-            }
-        }
+        
         window.addEventListener('load', function() {
             const loadingScreen = document.getElementById('loading-screen');
             loadingScreen.classList.add('fade-out');
