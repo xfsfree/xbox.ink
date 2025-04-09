@@ -13,68 +13,14 @@
     <link rel="stylesheet" href="css/css-carousel.min.css">
     <link rel="stylesheet" href="css/css-style.css">
     <style>
-        @media only screen and (max-width: 1000px) {
-            .swipe-indicator {
-                position: absolute;
-                top: 50%;
-                right: -40px;
-                transform: translateY(-50%);
-                width: 60px;
-                height: 60px;
-                background: linear-gradient(135deg, #00fff7 0%, #0066ff 100%);
-                border-radius: 50%;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                z-index: 10;
-                animation: swipeAnimation 1.5s ease-in-out;
-                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
-                cursor: pointer;
-                opacity: 0;
-            }
-            .swipe-indicator i {
-                color: white;
-                font-size: 26px;
-                filter: drop-shadow(0 2px 3px rgba(0,0,0,0.4));
-            }
-            .swipe-text {
-                color: white;
-                font-size: 11px;
-                font-weight: bold;
-                margin-top: 3px;
-                text-shadow: 0 1px 3px rgba(0,0,0,0.4);
-                letter-spacing: 1px;
-            }
-            @keyframes swipeAnimation {
-                0% { 
-                    right: -40px; 
-                    opacity: 0;
-                    transform: translateY(-50%) scale(0.6);
-                }
-                20% { 
-                    opacity: 1;
-                    transform: translateY(-50%) scale(1.1);
-                }
-                80% { 
-                    opacity: 1;
-                    transform: translateY(-50%) scale(1.1);
-                }
-                100% { 
-                    right: calc(100% + 40px); 
-                    opacity: 0;
-                    transform: translateY(-50%) scale(0.6);
-                }
-            }
-        }
-        .invalid-input {
-            border: 2px solid #ff0000 !important;
-            box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
-        }
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
             10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
             20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        .invalid-input {
+            border: 2px solid red !important;
+            animation: shake 0.5s ease-in-out;
         }
     </style>
 </head>
@@ -118,7 +64,7 @@
                         <input type="text" class="form-control" id="discordUsername" placeholder="Enter your Discord username" required>
                     </div>
                     <div class="payment-options">
-                        <button class="btn pay-with-paypal w-100 mb-2" onclick="showPaypalModal()" style="background-color: #ffc43b; align-items: center;">
+                        <button class="btn pay-with-paypal w-100 mb-2" onclick="handlePaypalClick()" style="background-color: #ffc43b; align-items: center;">
                             <img src="images/paypal.png" alt="PayPal" style="height: 28px; width: 100px;" loading="lazy">
                         </button>
                     </div>
@@ -134,8 +80,8 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div id="paypalPriceDisplay"></div>
-                    <p>You should send the money manually due to security reasons. Once you pay please join our support server so we can help you further.</p>
+                    <p>The transaction should be sent manually due to security reasons. Once you pay please join our support server so we can help you further.</p>
+                    <p id="amountToPay">Amount to pay: </p>
                     <p>Send to: <a href="https://paypal.me/exilorn" target="_blank">https://paypal.me/exilorn</a></p>
                 </div>
                 <div class="modal-footer">
@@ -629,6 +575,62 @@
     <script src="js/js-font-awsome.min.js" defer></script>
     <script src="js/js-vanilla-tilt.min.js" defer></script>
     <script src="js/js-main.js" defer></script>
+    <style>
+        @media only screen and (max-width: 1000px) {
+            .swipe-indicator {
+                position: absolute;
+                top: 50%;
+                right: -40px;
+                transform: translateY(-50%);
+                width: 60px;
+                height: 60px;
+                background: linear-gradient(135deg, #00fff7 0%, #0066ff 100%);
+                border-radius: 50%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                z-index: 10;
+                animation: swipeAnimation 1.5s ease-in-out;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+                cursor: pointer;
+                opacity: 0;
+            }
+            .swipe-indicator i {
+                color: white;
+                font-size: 26px;
+                filter: drop-shadow(0 2px 3px rgba(0,0,0,0.4));
+            }
+            .swipe-text {
+                color: white;
+                font-size: 11px;
+                font-weight: bold;
+                margin-top: 3px;
+                text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+                letter-spacing: 1px;
+            }
+            @keyframes swipeAnimation {
+                0% { 
+                    right: -40px; 
+                    opacity: 0;
+                    transform: translateY(-50%) scale(0.6);
+                }
+                20% { 
+                    opacity: 1;
+                    transform: translateY(-50%) scale(1.1);
+                }
+                80% { 
+                    opacity: 1;
+                    transform: translateY(-50%) scale(1.1);
+                }
+                100% { 
+                    right: calc(100% + 40px); 
+                    opacity: 0;
+                    transform: translateY(-50%) scale(0.6);
+                }
+            }
+        }
+    </style>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             function isSmallScreen() {
@@ -658,35 +660,72 @@
     <script src="js/js-core.js" defer></script>
     <script src="js/2282-js-setupCarousel.js" defer></script>
     <script src="js/3557-js-custom.js" defer></script>
-    <script>
-        function openCheckoutModal(title, description, price, stripeLink) {
-            document.getElementById('productTitle').innerText = title;
-            document.getElementById('productDescription').innerText = description;
-            document.getElementById('productPrice').innerText = price;
-            window.currentStripeLink = stripeLink;
-            window.currentProductPrice = price;
-            const checkoutModal = new bootstrap.Modal(document.getElementById('checkoutModal'), {});
-            checkoutModal.show();
-        }
+<script>
+    function openCheckoutModal(title, description, price, stripeLink) {
+        document.getElementById('productTitle').innerText = title;
+        document.getElementById('productDescription').innerText = description;
+        document.getElementById('productPrice').innerText = price;
         
-        function showPaypalModal() {
-            const usernameInput = document.getElementById('discordUsername');
-            if (!usernameInput.value.trim()) {
-                usernameInput.classList.add('invalid-input');
-                usernameInput.style.animation = 'shake 0.5s';
-                setTimeout(() => {
-                    usernameInput.style.animation = '';
-                }, 500);
-                return;
-            }
-            usernameInput.classList.remove('invalid-input');
-            const priceText = document.createElement('p');
-            priceText.innerHTML = `<strong>${window.currentProductPrice}</strong>`;
-            priceText.style.textAlign = 'center';
-            priceText.style.fontSize = '1.2em';
-            let priceDisplay = document.getElementById('paypalPriceDisplay');
-            if (!priceDisplay) {
-                priceDisplay = document.createElement('div');
-                priceDisplay.id = 'paypalPriceDisplay';
-                const modalBody = document.querySelector('#paypalModal .modal-body');
-                modalBody.insertBefore(priceDisplay, modalBody.first
+        // Extract just the dollar amount from the price string
+        const priceValue = price.replace('Price: ', '');
+        window.currentPrice = priceValue;
+        
+        window.currentStripeLink = stripeLink;
+        const checkoutModal = new bootstrap.Modal(document.getElementById('checkoutModal'), {});
+        checkoutModal.show();
+    }
+    
+    function handlePaypalClick() {
+        const input = document.getElementById('discordUsername');
+        if (!input.value.trim()) {
+            input.classList.add('invalid-input');
+            input.style.animation = 'none';
+            setTimeout(() => {
+                input.style.animation = '';
+            }, 10);
+            return;
+        }
+        input.classList.remove('invalid-input');
+        document.getElementById('amountToPay').innerText = 'Amount to pay: ' + window.currentPrice;
+        const paypalModal = new bootstrap.Modal(document.getElementById('paypalModal'), {});
+        paypalModal.show();
+    }
+    
+    window.addEventListener('load', function() {
+        const loadingScreen = document.getElementById('loading-screen');
+        loadingScreen.classList.add('fade-out');
+        setTimeout(() => {
+            loadingScreen.style.display = 'none';
+        }, 500);
+    });
+</script>
+</body>
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h3 class="footer-title">Undo Xbox Services</h3>
+                <p class="footer-text">
+                    Undo Xbox Services offers powerful tools like bot followers, gamerscore mods, and spammers. Elevate your Xbox experience with fast, reliable, and easy-to-use solutions
+                </p>
+                <div class="footer-social">
+                    <a href="https://discord.gg/gamertag" target="_blank" class="social-link">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@PQZS" target="_blank" class="social-link">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://api.whatsapp.com/send/?phone=79969176905&text&type=phone_number&app_absent=0" target="_blank" class="social-link">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="copyright">
+                &copy; 2025 Undo Xbox Services
+            </p>
+        </div>
+    </div>
+</footer>
+</html>
