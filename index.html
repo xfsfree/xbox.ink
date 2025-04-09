@@ -1,19 +1,717 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta http-equiv="refresh" content="0;url=https://discord.gg/gamertag">
-    <script>
-        window.location.href = "https://discord.gg/gamertag";
-    </script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:description" content="Undo - Top Xbox Tools">
+    <link rel="shortcut icon" href="favicons/img-xboxfs.ico" type="image/x-icon">
+    <title>Undo Xbox Services</title>
+    <link rel="stylesheet" href="css/css-font-awsome.min.css">
+    <link rel="stylesheet" href="css/css-bootstrap.min.css">
+    <link rel="stylesheet" href="css/css-carousel.theme.min.css">
+    <link rel="stylesheet" href="css/css-carousel.min.css">
+    <link rel="stylesheet" href="css/css-style.css">
 </head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6M6RJRL3V3"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-6M6RJRL3V3');
-</script>
-<body>
+<body style="background-image: url('images/bg.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+    <div id="loading-screen">
+        <div class="loader"></div>
+        <div class="loading-text">
+            <span>L</span>
+            <span>O</span>
+            <span>A</span>
+            <span>D</span>
+            <span>I</span>
+            <span>N</span>
+            <span>G</span>
+        </div>
+    </div>
+    <header class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center mt-3 mb-3 position-relative">
+                    <a href="https://discord.gg/gamertag"><img src="images/undo.png" class="undo-image"></a>
+                    <h1 style="background-image: radial-gradient(92% 75% at 18.2% 90.5%, rgb(255, 216, 121) 0%, rgb(255, 255, 255) 100%); -webkit-background-clip: text; color: transparent; text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); transform: translate(-5%, 25%);">Undo Xbox Services</h1>
+                </div>
+                <button class="custom-button" onclick="window.location.href='https://discord.gg/gamertag'">Join Support Server</button>
+            </div>
+        </div>
+    </header>
+    <div class="modal fade" id="checkoutModal" tabindex="-1" aria-labelledby="checkoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="checkoutModalLabel">Checkout</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h4 id="productTitle"></h4>
+                    <p id="productDescription"></p>
+                    <p id="productPrice"></p>
+                    <div class="mb-3">
+                        <label for="discordUsername" class="form-label">Discord Username</label>
+                        <input type="text" class="form-control" id="discordUsername" placeholder="Enter your Discord username" required>
+                    </div>
+                    <div class="payment-options">
+                        <button class="btn pay-with-paypal w-100 mb-2" onclick="showPaypalModal()" style="background-color: #ffc43b; align-items: center;">
+                            <img src="images/paypal.png" alt="PayPal" style="height: 28px; width: 100px;" loading="lazy">
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="paypalModal" tabindex="-1" aria-labelledby="paypalModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="paypalModalLabel">PayPal Payment</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>You should send the money manually due to security reasons.</p>
+                    <p>Send to: <a href="https://paypal.me/exilorn" target="_blank">https://paypal.me/exilorn</a></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="main_content mt-0 pt-0">
+        <div class="container">
+            <div class="content_wrp">
+                <div class="home-demo">
+                    <h3 class="section_title" style="color: #00fff7;">Bot Followers</h3>
+                    <div class="owl-carousel owl-theme">
+                        <div class="item" data-tilt>
+                            <div class="item_wrp">
+                                <div class="img">
+                                    <a href="#" onclick="openCheckoutModal('1k Xbox Followers', 'You will be receiving bot followers after payment. In this way you don\'t deal with using the bot panel.', 'Price: $3 USD', 'https://aqil.us/product1')">
+                                        <img src="images/1kfollowers.png" alt="" loading="lazy">
+                                    </a>
+                                    <div class="download">
+                                        <span class="downloadbtnSpan" onclick="Download_ID('9P8RQH67TTT1')">
+                                            <i class="fa-solid fa-credit-card"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <h1 class="title">$3 USD</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item" data-tilt>
+                            <div class="item_wrp">
+                                <div class="img">
+                                    <a href="#" onclick="openCheckoutModal('2k Xbox Followers', 'You will be receiving bot followers after payment. In this way you don\'t deal with using the bot panel.', 'Price: $5 USD', 'https://aqil.us/product2')">
+                                        <img src="images/2kfollowers.png" alt="" loading="lazy">
+                                    </a>
+                                    <div class="download">
+                                        <span class="downloadbtnSpan" onclick="Download_ID('9P8RQH67TTT1')">
+                                            <i class="fa-solid fa-credit-card"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <h1 class="title">$5 USD</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item" data-tilt>
+                            <div class="item_wrp">
+                                <div class="img">
+                                    <a href="#" onclick="openCheckoutModal('5k Xbox Followers', 'You will be receiving bot followers after payment. In this way you don\'t deal with using the bot panel.', 'Price: $12 USD', 'https://aqil.us/product3')">
+                                        <img src="images/5kfollowers.png" alt="" loading="lazy">
+                                    </a>
+                                    <div class="download">
+                                        <span class="downloadbtnSpan" onclick="Download_ID('9NB54XTF084M')">
+                                            <i class="fa-solid fa-credit-card"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <h1 class="title">$12 USD</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item" data-tilt>
+                            <div class="item_wrp">
+                                <div class="img">
+                                    <a href="#" onclick="openCheckoutModal('10k Xbox Followers', 'You will be receiving bot followers after payment. In this way you don\'t deal with using the bot panel.', 'Price: $25 USD', 'https://aqil.us/product4')">
+                                        <img src="images/10kfollowers.png" alt="" loading="lazy">
+                                    </a>
+                                    <div class="download">
+                                        <span class="downloadbtnSpan" onclick="Download_ID('9P5HV0HVZTSK')">
+                                            <i class="fa-solid fa-credit-card"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <h1 class="title">$25 USD</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item" data-tilt>
+                            <div class="item_wrp">
+                                <div class="img">
+                                    <a href="#" onclick="openCheckoutModal('20k Xbox Followers', 'You will be receiving bot followers after payment. In this way you don\'t deal with using the bot panel.', 'Price: $45 USD', 'https://aqil.us/product5')">
+                                        <img src="images/20kfollowers.png" alt="" loading="lazy">
+                                    </a>
+                                    <div class="download">
+                                        <span class="downloadbtnSpan" onclick="Download_ID('BX3M8L83BBRW')">
+                                            <i class="fa-solid fa-credit-card"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <h1 class="title">$45 USD</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="home-demo">
+                    <h3 class="section_title" style="color: #c00000;">Follower Bot Access</h3>
+                    <div class="owl-carousel owl-theme">
+                        <div class="item" data-tilt>
+                            <div class="item_wrp">
+                                <div class="img">
+                                    <a href="#" onclick="openCheckoutModal('1 Day Follower Bot', 'Access to Follower Bot for 1 day. Usable on phone and PC.', 'Price: $10 USD', 'https://aqil.us/product6')">
+                                        <img src="images/1dayfb.png" alt="" loading="lazy">
+                                    </a>
+                                    <div class="download">
+                                        <span class="downloadbtnSpan" onclick="Download_ID('9P8RQH67TTT1')">
+                                            <i class="fa-solid fa-credit-card"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <h1 class="title">$10 USD</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item" data-tilt>
+                            <div class="item_wrp">
+                                <div class="img">
+                                    <a href="#" onclick="openCheckoutModal('1 Week Follower Bot', 'Access to Follower Bot for 1 week. Usable on phone and PC.', 'Price: $20 USD', 'https://aqil.us/product7')">
+                                        <img src="images/1weekfb.png" alt="" loading="lazy">
+                                    </a>
+                                    <div class="download">
+                                        <span class="downloadbtnSpan" onclick="Download_ID('9NB54XTF084M')">
+                                            <i class="fa-solid fa-credit-card"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <h1 class="title">$20 USD</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item" data-tilt>
+                            <div class="item_wrp">
+                                <div class="img">
+                                    <a href="#" onclick="openCheckoutModal('1 Month Follower Bot', 'Access to Follower Bot for 1 month. Usable on phone and PC.', 'Price: $30 USD', 'https://aqil.us/product8')">
+                                        <img src="images/1monthfb.png" alt="" loading="lazy">
+                                    </a>
+                                    <div class="download">
+                                        <span class="downloadbtnSpan" onclick="Download_ID('9P5HV0HVZTSK')">
+                                            <i class="fa-solid fa-credit-card"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <h1 class="title">$30 USD</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item" data-tilt>
+                            <div class="item_wrp">
+                                <div class="img">
+                                    <a href="#" onclick="openCheckoutModal('Lifetime Follower Bot', 'Access to Follower Bot for lifetime. Usable on phone and PC.', 'Price: $75 USD', 'https://aqil.us/product9')">
+                                        <img src="images/lifetimefb.png" alt="" loading="lazy">
+                                    </a>
+                                    <div class="download">
+                                        <span class="downloadbtnSpan" onclick="Download_ID('BX3M8L83BBRW')">
+                                            <i class="fa-solid fa-credit-card"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <h1 class="title">$75 USD</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="main_content mt-0 pt-0">
+        <div class="container">
+            <div class="content_wrp">
+                <div class="home-demo">
+                    <h3 class="section_title" style="color: #ff8a00;">LFG Post Spammer</h3>
+                    <div class="owl-carousel owl-theme">
+                        <div class="item" data-tilt>
+                            <div class="item_wrp">
+                                <div class="img">
+                                    <a href="#" onclick="openCheckoutModal('1 Day LFG Post Spammer', 'Access to LFG Bot for 1 day. Usable on phone and PC.', 'Price: $10 USD', 'https://aqil.us/product6')">
+                                        <img src="images/1daylfg.png" alt="" loading="lazy">
+                                    </a>
+                                    <div class="download">
+                                        <span class="downloadbtnSpan" onclick="Download_ID('C1QJM5XT9SXV')">
+                                            <i class="fa-solid fa-credit-card"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <h1 class="title">$10 USD</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item" data-tilt>
+                            <div class="item_wrp">
+                                <div class="img">
+                                    <a href="#" onclick="openCheckoutModal('1 Week LFG Post Spammer', 'Access to LFG Bot for 1 week. Usable on phone and PC.', 'Price: $20 USD', 'https://aqil.us/product7')">
+                                        <img src="images/1weeklfg.png" alt="" loading="lazy">
+                                    </a>
+                                    <div class="download">
+                                        <span class="downloadbtnSpan" onclick="Download_ID('C10GWTNNNBZ8')">
+                                            <i class="fa-solid fa-credit-card"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <h1 class="title">$20 USD</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item" data-tilt>
+                            <div class="item_wrp">
+                                <div class="img">
+                                    <a href="#" onclick="openCheckoutModal('1 Month LFG Post Spammer', 'Access to LFG Bot for 1 month. Usable on phone and PC.', 'Price: $50 USD', 'https://aqil.us/product10')">
+                                        <img src="images/1monthlfg.png" alt="" loading="lazy">
+                                    </a>
+                                    <div class="download">
+                                        <span class="downloadbtnSpan" onclick="Download_ID('_____product_Id_to_download_____')">
+                                            <i class="fa-solid fa-credit-card"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <h1 class="title">$50 USD</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item" data-tilt>
+                            <div class="item_wrp">
+                                <div class="img">
+                                    <a href="#" onclick="openCheckoutModal('Lifetime LFG Post Spammer', 'Access to LFG Bot for lifetime. Usable on phone and PC.', 'Price: $100 USD', 'https://aqil.us/product11')">
+                                        <img src="images/lifetimelfg.png" alt="" loading="lazy">
+                                    </a>
+                                    <div class="download">
+                                        <span class="downloadbtnSpan" onclick="Download_ID('_____product_Id_to_download_____')">
+                                            <i class="fa-solid fa-credit-card"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <h1 class="title">$100 USD</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="main_content mt-0 pt-0">
+        <div class="container">
+            <div class="content_wrp">
+                <div class="home-demo">
+                    <h3 class="section_title" style="color: #0015ff;">Gamertag Autoclaimer</h3>
+                    <div class="owl-carousel owl-theme">
+                        <div class="item" data-tilt>
+                            <div class="item_wrp">
+                                <div class="img">
+                                    <a href="#" onclick="openCheckoutModal('1 Day Gamertag Autoclaimer', 'Access to Gamertag Autoclaimer Tool for 1 day', 'Price: $10 USD', 'https://aqil.us/product6')">
+                                        <img src="images/1dayac.png" alt="" loading="lazy">
+                                    </a>
+                                    <div class="download">
+                                        <span class="downloadbtnSpan" onclick="Download_ID('9P8RQH67TTT1')">
+                                            <i class="fa-solid fa-credit-card"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <h1 class="title">$10 USD</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item" data-tilt>
+                            <div class="item_wrp">
+                                <div class="img">
+                                    <a href="#" onclick="openCheckoutModal('1 Week Gamertag Autoclaimer', 'Access to Gamertag Autoclaimer Tool for 1 week', 'Price: $20 USD', 'https://aqil.us/product7')">
+                                        <img src="images/1weekac.png" alt="" loading="lazy">
+                                    </a>
+                                    <div class="download">
+                                        <span class="downloadbtnSpan" onclick="Download_ID('_____product_Id_to_download_____')">
+                                            <i class="fa-solid fa-credit-card"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <h1 class="title">$20 USD</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item" data-tilt>
+                            <div class="item_wrp">
+                                <div class="img">
+                                    <a href="#" onclick="openCheckoutModal('1 Month Gamertag Autoclaimer', 'Access to Gamertag Autoclaimer Tool for 1 month', 'Price: $50 USD', 'https://aqil.us/product10')">
+                                        <img src="images/1monthac.png" alt="" loading="lazy">
+                                    </a>
+                                    <div class="download">
+                                        <span class="downloadbtnSpan" onclick="Download_ID('_____product_Id_to_download_____')">
+                                            <i class="fa-solid fa-credit-card"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <h1 class="title">$50 USD</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item" data-tilt>
+                            <div class="item_wrp">
+                                <div class="img">
+                                    <a href="#" onclick="openCheckoutModal('Lifetime Gamertag Autoclaimer', 'Access to Gamertag Autoclaimer Tool for lifetime', 'Price: $150 USD', 'https://aqil.us/product12')">
+                                        <img src="images/lifetimeac.png" alt="" loading="lazy">
+                                    </a>
+                                    <div class="download">
+                                        <span class="downloadbtnSpan" onclick="Download_ID('_____product_Id_to_download_____')">
+                                            <i class="fa-solid fa-credit-card"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <h1 class="title">$150 USD</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="main_content mt-0 pt-0">
+        <div class="container">
+            <div class="content_wrp">
+                <div class="home-demo">
+                    <h3 class="section_title" style="color: #009302;">Gamerscore Mod</h3>
+                    <div class="owl-carousel owl-theme">
+                        <div class="item" data-tilt>
+                            <div class="item_wrp">
+                                <div class="img">
+                                    <a href="#" onclick="openCheckoutModal('50K Gamerscore Mod', 'Boost your Xbox gamerscore by 50,000', 'Price: $10 USD', 'https://aqil.us/product6')">
+                                        <img src="images/50kscore.png" alt="" loading="lazy">
+                                    </a>
+                                    <div class="download">
+                                        <span class="downloadbtnSpan" onclick="Download_ID('_____product_Id_to_download_____')">
+                                            <i class="fa-solid fa-credit-card"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <h1 class="title">$10 USD</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item" data-tilt>
+                            <div class="item_wrp">
+                                <div class="img">
+                                    <a href="#" onclick="openCheckoutModal('200K Gamerscore Mod', 'Boost your Xbox gamerscore by 200,000', 'Price: $20 USD', 'https://aqil.us/product7')">
+                                        <img src="images/200kscore.png" alt="" loading="lazy">
+                                    </a>
+                                    <div class="download">
+                                        <span class="downloadbtnSpan" onclick="Download_ID('_____product_Id_to_download_____')">
+                                            <i class="fa-solid fa-credit-card"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <h1 class="title">$20 USD</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item" data-tilt>
+                            <div class="item_wrp">
+                                <div class="img">
+                                    <a href="#" onclick="openCheckoutModal('500K Gamerscore Mod', 'Boost your Xbox gamerscore by 500,000', 'Price: $30 USD', 'https://aqil.us/product8')">
+                                        <img src="images/500kscore.png" alt="" loading="lazy">
+                                    </a>
+                                    <div class="download">
+                                        <span class="downloadbtnSpan" onclick="Download_ID('_____product_Id_to_download_____')">
+                                            <i class="fa-solid fa-credit-card"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <h1 class="title">$30 USD</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item" data-tilt>
+                            <div class="item_wrp">
+                                <div class="img">
+                                    <a href="#" onclick="openCheckoutModal('1M Gamerscore Mod', 'Boost your Xbox gamerscore by 1,000,000', 'Price: $50 USD', 'https://aqil.us/product10')">
+                                        <img src="images/1mscore.png" alt="" loading="lazy">
+                                    </a>
+                                    <div class="download">
+                                        <span class="downloadbtnSpan" onclick="Download_ID('_____product_Id_to_download_____')">
+                                            <i class="fa-solid fa-credit-card"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <h1 class="title">$50 USD</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="home-demo">
+                <h3 class="section_title" style="color: #00c2ff;">Message Spammer Bot</h3>
+                <div class="owl-carousel owl-theme">
+                    <div class="item" data-tilt>
+                        <div class="item_wrp">
+                            <div class="img">
+                                <a href="#" onclick="openCheckoutModal('1 Day Message Spammer Bot', 'Access to Message Spammer Bot for 1 day. Usable on phone and PC.', 'Price: $10 USD', 'https://aqil.us/product6')">
+                                    <img src="images/1daymsg.png" alt="" loading="lazy">
+                                </a>
+                                <div class="download">
+                                    <span class="downloadbtnSpan" onclick="Download_ID('_____product_Id_to_download_____')">
+                                        <i class="fa-solid fa-credit-card"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="content">
+                                <h1 class="title">$10 USD</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item" data-tilt>
+                        <div class="item_wrp">
+                            <div class="img">
+                                <a href="#" onclick="openCheckoutModal('1 Week Message Spammer Bot', 'Access to Message Spammer Bot for 1 week. Usable on phone and PC.', 'Price: $20 USD', 'https://aqil.us/product7')">
+                                    <img src="images/1weekmsg.png" alt="" loading="lazy">
+                                </a>
+                                <div class="download">
+                                    <span class="downloadbtnSpan" onclick="Download_ID('_____product_Id_to_download_____')">
+                                        <i class="fa-solid fa-credit-card"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="content">
+                                <h1 class="title">$20 USD</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item" data-tilt>
+                        <div class="item_wrp">
+                            <div class="img">
+                                <a href="#" onclick="openCheckoutModal('1 Month Message Spammer Bot', 'Access to Message Spammer Bot for 1 month. Usable on phone and PC.', 'Price: $30 USD', 'https://aqil.us/product8')">
+                                    <img src="images/1monthmsg.png" alt="" loading="lazy">
+                                </a>
+                                <div class="download">
+                                    <span class="downloadbtnSpan" onclick="Download_ID('_____product_Id_to_download_____')">
+                                        <i class="fa-solid fa-credit-card"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="content">
+                                <h1 class="title">$30 USD</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item" data-tilt>
+                        <div class="item_wrp">
+                            <div class="img">
+                                <a href="#" onclick="openCheckoutModal('Lifetime Message Spammer Bot', 'Access to Message Spammer Bot for lifetime. Usable on phone and PC.', 'Price: $50 USD', 'https://aqil.us/product10')">
+                                    <img src="images/lifetimemsg.png" alt="" loading="lazy">
+                                </a>
+                                <div class="download">
+                                    <span class="downloadbtnSpan" onclick="Download_ID('_____product_Id_to_download_____')">
+                                        <i class="fa-solid fa-credit-card"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="content">
+                                <h1 class="title">$50 USD</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="js/js-jquery.min.js" defer></script>
+    <script src="js/js-carousel.min.js" defer></script>
+    <script src="js/js-bootstrap.bundle.min.js" defer></script>
+    <script src="js/js-font-awsome.min.js" defer></script>
+    <script src="js/js-vanilla-tilt.min.js" defer></script>
+    <script src="js/js-main.js" defer></script>
+    <style>
+        @media only screen and (max-width: 1000px) {
+            .swipe-indicator {
+                position: absolute;
+                top: 50%;
+                right: -40px;
+                transform: translateY(-50%);
+                width: 60px;
+                height: 60px;
+                background: linear-gradient(135deg, #00fff7 0%, #0066ff 100%);
+                border-radius: 50%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                z-index: 10;
+                animation: swipeAnimation 1.5s ease-in-out;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+                cursor: pointer;
+                opacity: 0;
+            }
+            .swipe-indicator i {
+                color: white;
+                font-size: 26px;
+                filter: drop-shadow(0 2px 3px rgba(0,0,0,0.4));
+            }
+            .swipe-text {
+                color: white;
+                font-size: 11px;
+                font-weight: bold;
+                margin-top: 3px;
+                text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+                letter-spacing: 1px;
+            }
+            @keyframes swipeAnimation {
+                0% { 
+                    right: -40px; 
+                    opacity: 0;
+                    transform: translateY(-50%) scale(0.6);
+                }
+                20% { 
+                    opacity: 1;
+                    transform: translateY(-50%) scale(1.1);
+                }
+                80% { 
+                    opacity: 1;
+                    transform: translateY(-50%) scale(1.1);
+                }
+                100% { 
+                    right: calc(100% + 40px); 
+                    opacity: 0;
+                    transform: translateY(-50%) scale(0.6);
+                }
+            }
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function isSmallScreen() {
+                return window.innerWidth <= 999;
+            }
+            if(isSmallScreen()) {
+                setTimeout(function() {
+                    document.querySelectorAll('.owl-carousel .item').forEach((item, index) => {
+                        if(index < 3) {
+                            const imgContainer = item.querySelector('.img');
+                            if (imgContainer) {
+                                imgContainer.style.position = 'relative';
+                                const arrow = document.createElement('div');
+                                arrow.className = 'swipe-indicator';
+                                arrow.innerHTML = '<i class="fas fa-arrow-left"></i><div class="swipe-text">SWIPE!</div>';
+                                imgContainer.appendChild(arrow);
+                                setTimeout(() => {
+                                    arrow.remove();
+                                }, 2000);
+                            }
+                        }
+                    });
+                }, 1300);
+            }
+        });
+    </script>
+    <script src="js/js-core.js" defer></script>
+    <script src="js/2282-js-setupCarousel.js" defer></script>
+    <script src="js/3557-js-custom.js" defer></script>
+    <script>
+        function openCheckoutModal(title, description, price, stripeLink) {
+            document.getElementById('productTitle').innerText = title;
+            document.getElementById('productDescription').innerText = description;
+            document.getElementById('productPrice').innerText = price;
+            window.currentStripeLink = stripeLink;
+            const checkoutModal = new bootstrap.Modal(document.getElementById('checkoutModal'), {});
+            checkoutModal.show();
+        }
+        
+        function showPaypalModal() {
+            const paypalModal = new bootstrap.Modal(document.getElementById('paypalModal'), {});
+            paypalModal.show();
+        }
+        
+        function validateInput() {
+            const input = document.getElementById('discordUsername');
+            if (!input.value.trim()) {
+                input.classList.add('invalid-input');
+                input.style.animation = 'none';
+                setTimeout(() => {
+                    input.style.animation = '';
+                }, 10);
+                return false;
+            }
+            input.classList.remove('invalid-input');
+            return true;
+        }
+        
+        window.addEventListener('load', function() {
+            const loadingScreen = document.getElementById('loading-screen');
+            loadingScreen.classList.add('fade-out');
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+            }, 500);
+        });
+    </script>
 </body>
+<footer class="footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h3 class="footer-title">Undo Xbox Services</h3>
+                <p class="footer-text">
+                    Undo Xbox Services offers powerful tools like bot followers, gamerscore mods, and spammers. Elevate your Xbox experience with fast, reliable, and easy-to-use solutions
+                </p>
+                <div class="footer-social">
+                    <a href="https://discord.gg/gamertag" target="_blank" class="social-link">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@PQZS" target="_blank" class="social-link">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://api.whatsapp.com/send/?phone=79969176905&text&type=phone_number&app_absent=0" target="_blank" class="social-link">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="copyright">
+                &copy; 2025 Undo Xbox Services
+            </p>
+        </div>
+    </div>
+</footer>
 </html>
