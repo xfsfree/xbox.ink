@@ -12,17 +12,6 @@
     <link rel="stylesheet" href="css/css-carousel.theme.min.css">
     <link rel="stylesheet" href="css/css-carousel.min.css">
     <link rel="stylesheet" href="css/css-style.css">
-    <style>
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-            20%, 40%, 60%, 80% { transform: translateX(5px); }
-        }
-        .invalid-input {
-            border: 2px solid red !important;
-            animation: shake 0.5s ease-in-out;
-        }
-    </style>
 </head>
 <body style="background-image: url('images/bg.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
     <div id="loading-screen">
@@ -41,10 +30,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 d-flex justify-content-center mt-3 mb-3 position-relative">
-                    <a href="https://discord.gg/ARZvTtNXch"><img src="images/undo.png" class="undo-image"></a>
+                    <a href="https://discord.gg/gamertags"><img src="images/undo.png" class="undo-image"></a>
                     <h1 style="background-image: radial-gradient(92% 75% at 18.2% 90.5%, rgb(255, 216, 121) 0%, rgb(255, 255, 255) 100%); -webkit-background-clip: text; color: transparent; text-shadow: 0 0 10px rgba(255, 255, 255, 0.5); transform: translate(-5%, 25%);">Undo Xbox Services</h1>
                 </div>
-                <button class="custom-button" onclick="window.location.href='https://discord.gg/ARZvTtNXch'">Join Support Server</button>
+                <button class="custom-button" onclick="window.location.href='https://discord.gg/gamertags'">Join Support Server</button>
             </div>
         </div>
     </header>
@@ -60,13 +49,24 @@
                     <p id="productDescription"></p>
                     <p id="productPrice"></p>
                     <div class="mb-3">
-                        <label for="discordUsername" class="form-label">Xbox Gamertag</label>
-                        <input type="text" class="form-control" id="discordUsername" placeholder="Enter your Xbox Gamertag" required>
+                        <label for="discordUsername" class="form-label">Discord Username</label>
+                        <input type="text" class="form-control" id="discordUsername" placeholder="Enter your Discord username" required>
                     </div>
                     <div class="payment-options">
-                        <button class="btn pay-with-paypal w-100 mb-2" onclick="handlePaypalClick()" style="background-color: #ffc43b; align-items: center;">
+                        <button class="btn pay-with-card w-100 mb-2" onclick="processPayment()" style="background: #27292d; display: flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid #ccc;">
+                            <img src="images/visa.png" alt="Visa" loading="lazy">
+                            <img src="images/mastercard.png" alt="Mastercard" loading="lazy">
+                            <img src="images/amex.png" alt="Amex" style="width: 30px; height: 30px;" loading="lazy">
+                            <img src="images/discover.jpg" alt="Discover" style="width: 30px; height: 20px;" loading="lazy">
+                            <img src="images/union.png" alt="UnionPay" style="height: 30px; width: 30px;" loading="lazy">
+                        </button>
+                        <button class="btn pay-with-card w-100 mb-2" onclick="processPayment()" style="background: black; display: flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid #ccc;">
+                            <img src="images/applepay.png" alt="Apple Pay" style="width: 65px; height: 29px;" loading="lazy">
+                        </button>
+                        <button class="btn pay-with-paypal w-100 mb-2" onclick="showPaypalModal()" style="background-color: #ffc43b; align-items: center;">
                             <img src="images/paypal.png" alt="PayPal" style="height: 28px; width: 100px;" loading="lazy">
                         </button>
+                        <button class="btn pay-with-bank w-100 mb-2" onclick="processPayment()">Bank Transfer</button>
                     </div>
                 </div>
             </div>
@@ -76,12 +76,12 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="paypalModalLabel">PayPal Payment</h5>
+                    <h5 class="modal-title" id="paypalModalLabel">Paypal Payment</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <p>The transaction should be sent manually due to security reasons. Once you pay please join our support server so we can help you further.</p>
-                    <p id="amountToPay">Amount to pay: </p>
+                    <p>Amount to pay: <span id="paypalAmount"></span> USD</p>
                     <p>Send to: <a href="https://paypal.me/exilorn" target="_blank">https://paypal.me/exilorn</a></p>
                 </div>
                 <div class="modal-footer">
@@ -575,6 +575,15 @@
     <script src="js/js-font-awsome.min.js" defer></script>
     <script src="js/js-vanilla-tilt.min.js" defer></script>
     <script src="js/js-main.js" defer></script>
+    <script src="https://js.stripe.com/v3/" defer></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6M6RJRL3V3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6M6RJRL3V3');
+</script>
     <style>
         @media only screen and (max-width: 1000px) {
             .swipe-indicator {
@@ -660,45 +669,58 @@
     <script src="js/js-core.js" defer></script>
     <script src="js/2282-js-setupCarousel.js" defer></script>
     <script src="js/3557-js-custom.js" defer></script>
-<script>
-    function openCheckoutModal(title, description, price, stripeLink) {
-        document.getElementById('productTitle').innerText = title;
-        document.getElementById('productDescription').innerText = description;
-        document.getElementById('productPrice').innerText = price;
-        
-        // Extract just the dollar amount from the price string
-        const priceValue = price.replace('Price: ', '');
-        window.currentPrice = priceValue;
-        
-        window.currentStripeLink = stripeLink;
-        const checkoutModal = new bootstrap.Modal(document.getElementById('checkoutModal'), {});
-        checkoutModal.show();
-    }
-    
-    function handlePaypalClick() {
-        const input = document.getElementById('discordUsername');
-        if (!input.value.trim()) {
-            input.classList.add('invalid-input');
-            input.style.animation = 'none';
-            setTimeout(() => {
-                input.style.animation = '';
-            }, 10);
-            return;
+    <script>
+        function openCheckoutModal(title, description, price, stripeLink) {
+            document.getElementById('productTitle').innerText = title;
+            document.getElementById('productDescription').innerText = description;
+            document.getElementById('productPrice').innerText = price;
+            window.currentStripeLink = stripeLink;
+            const priceMatch = price.match(/\$(\d+)/);
+            if (priceMatch) {
+                window.currentAmount = priceMatch[1];
+            }
+            const checkoutModal = new bootstrap.Modal(document.getElementById('checkoutModal'), {});
+            checkoutModal.show();
         }
-        input.classList.remove('invalid-input');
-        document.getElementById('amountToPay').innerText = 'Amount to pay: ' + window.currentPrice;
-        const paypalModal = new bootstrap.Modal(document.getElementById('paypalModal'), {});
-        paypalModal.show();
-    }
-    
-    window.addEventListener('load', function() {
-        const loadingScreen = document.getElementById('loading-screen');
-        loadingScreen.classList.add('fade-out');
-        setTimeout(() => {
-            loadingScreen.style.display = 'none';
-        }, 500);
-    });
-</script>
+        
+        function showPaypalModal() {
+            if (!validateInput()) return;
+            document.getElementById('paypalAmount').innerText = window.currentAmount || '0';
+            const paypalModal = new bootstrap.Modal(document.getElementById('paypalModal'), {});
+            paypalModal.show();
+        }
+        
+        function validateInput() {
+            const input = document.getElementById('discordUsername');
+            if (!input.value.trim()) {
+                input.classList.add('invalid-input');
+                input.style.animation = 'none';
+                setTimeout(() => {
+                    input.style.animation = '';
+                }, 10);
+                return false;
+            }
+            input.classList.remove('invalid-input');
+            return true;
+        }
+        
+        function processPayment() {
+            if (!validateInput()) return;
+            if (window.currentStripeLink) {
+                window.location.href = window.currentStripeLink;
+            } else {
+                alert('Payment link is not available.');
+            }
+        }
+        
+        window.addEventListener('load', function() {
+            const loadingScreen = document.getElementById('loading-screen');
+            loadingScreen.classList.add('fade-out');
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+            }, 500);
+        });
+    </script>
 </body>
 <footer class="footer">
     <div class="container">
@@ -709,7 +731,7 @@
                     Undo Xbox Services offers powerful tools like bot followers, gamerscore mods, and spammers. Elevate your Xbox experience with fast, reliable, and easy-to-use solutions
                 </p>
                 <div class="footer-social">
-                    <a href="https://discord.gg/gamertag" target="_blank" class="social-link">
+                    <a href="https://discord.gg/gamertags" target="_blank" class="social-link">
                         <i class="fab fa-discord"></i>
                     </a>
                     <a href="https://www.youtube.com/@PQZS" target="_blank" class="social-link">
