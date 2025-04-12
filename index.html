@@ -636,7 +636,7 @@
 	
 	function showApplePayModal() {
     if (!validateInput()) return;
-    document.getElementById('applePayAmount').innerText = window.currentAmount || '0';
+	
     
     const checkoutModal = bootstrap.Modal.getInstance(document.getElementById('checkoutModal'));
     
