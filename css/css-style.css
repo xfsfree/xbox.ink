@@ -133,6 +133,7 @@ header.header a.header_link {
     padding: 10px;
     margin-bottom: 10px;
     border: none;
+    color: white;
     font-weight: bold;
 }
 
@@ -206,6 +207,7 @@ header.header a.header_link {
 
 .custom-button {
     background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: white;
     padding: 12px 24px;
     border: none;
     border-radius: 8px;
@@ -363,6 +365,7 @@ header.header a.header_link {
 }
 
 .btn.pay-with-bank {
+    background: linear-gradient(90deg, red 50%, white 50%);
     background-size: 200% 100%;
     background-position: right bottom;
     color: blue;
@@ -375,6 +378,7 @@ header.header a.header_link {
 
 .btn.pay-with-bank:hover {
     background-position: left bottom;
+    color: white;
 }
 
 #loading-screen {
@@ -571,10 +575,12 @@ html, body {
                 opacity: 0;
             }
             .swipe-indicator i {
+                color: white;
                 font-size: 26px;
                 filter: drop-shadow(0 2px 3px rgba(0,0,0,0.4));
             }
             .swipe-text {
+                color: white;
                 font-size: 11px;
                 font-weight: bold;
                 margin-top: 3px;
