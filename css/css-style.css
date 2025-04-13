@@ -5,14 +5,14 @@ body {
     padding-bottom: 20px;
     background-size: cover;
     background-repeat: no-repeat;
-    background-color: #000 !important;
+    background-color: transparent !important;
     min-height: 100vh;
     position: relative;
     padding-bottom: env(safe-area-inset-bottom);
 }
 
 html {
-    background-color: #000 !important;
+    background-color: transparent !important;
     height: 100%;
 }
 
@@ -488,7 +488,7 @@ html, body {
 }
 
 .footer {
-    background-color: #000 !important;
+    background-color: transparent !important;
     color: #fff;
     padding: 40px 0 0;
     margin: 0;
