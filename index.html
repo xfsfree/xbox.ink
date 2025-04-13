@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#000000">
-    <meta name="msapplication-navbutton-color" content="#000000">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +13,7 @@
     <link rel="stylesheet" href="css/css-carousel.min.css">
     <link rel="stylesheet" href="css/css-style.css">
 </head>
-<body style="background-image: url('images/bg.png'); background-repeat: repeat-y; background-size: 100% auto;">
+<body style="background-image: url('images/bg.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
     <div id="loading-screen">
         <div class="loader"></div>
         <div class="loading-text">
@@ -54,8 +49,8 @@
                     <p id="productDescription"></p>
                     <p id="productPrice"></p>
                     <div class="mb-3">
-                        <label for="discordUsername" class="form-label">Discord username</label>
-                        <input type="text" class="form-control" id="discordUsername" placeholder="Enter your Discord username" required>
+                        <label for="discordUsername" class="form-label">Xbox Gamertag</label>
+                        <input type="text" class="form-control" id="discordUsername" placeholder="Enter your Xbox gamertag" required>
                     </div>
                     <div class="payment-options">
                         <button class="btn pay-with-card w-100 mb-2" onclick="processPayment()" style="background: #27292d; display: flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid #ccc;">
@@ -66,15 +61,14 @@
                             <img src="images/union.png" alt="UnionPay" style="height: 30px; width: 30px;" loading="lazy">
                         </button>
                         <button class="btn pay-with-card w-100 mb-2" onclick="showApplePayModal()" style="background: black; display: flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid #ccc;">
-    <img src="images/applepay.png" alt="Apple Pay" style="width: 65px; height: 28px;" loading="lazy">
-</button>
+                            <img src="images/applepay.png" alt="Apple Pay" style="width: 65px; height: 28px;" loading="lazy">
+                        </button>
                         <button class="btn pay-with-paypal w-100 mb-2" onclick="showPaypalModal()" style="background-color: #ffc43b; align-items: center;">
                             <img src="images/paypal.png" alt="PayPal" style="height: 28px; width: 100px;" loading="lazy">
                         </button>
                         <button class="btn pay-with-amazon w-100 mb-2" onclick="processPayment()" style="background: #fad481; display: flex; align-items: center; border: 1px solid #ccc;">
                             <img src="images/amazon.png" alt="Visa" loading="lazy" style="height: 28px;">
                         </button>
-
                         <button class="btn pay-with-bank w-100 mb-2" onclick="processPayment()">Bank Transfer</button>
                     </div>
                 </div>
@@ -99,24 +93,23 @@
             </div>
         </div>
     </div>
-	
-	<div class="modal fade" id="applePayModal" tabindex="-1" aria-labelledby="applePayModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="applePayModalLabel">Apple Pay Payment</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>Apple Pay transaction should be completed manually due to security reasons. Please join our support server to complete your payment.</p>
-                <p>Discord server: <a href="https://discord.gg/gamertag" target="_blank">https://discord.gg/gamertag</a></p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    <div class="modal fade" id="applePayModal" tabindex="-1" aria-labelledby="applePayModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="applePayModalLabel">Apple Pay Payment</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Apple Pay transaction should be completed manually due to security reasons. Please join our support server to complete your payment.</p>
+                    <p>Discord server: <a href="https://discord.gg/gamertag" target="_blank">https://discord.gg/gamertag</a></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
     <section class="main_content mt-0 pt-0">
         <div class="container">
             <div class="content_wrp">
@@ -611,7 +604,62 @@
 
   gtag('config', 'G-6M6RJRL3V3');
 </script>
-
+    <style>
+        @media only screen and (max-width: 1000px) {
+            .swipe-indicator {
+                position: absolute;
+                top: 50%;
+                right: -40px;
+                transform: translateY(-50%);
+                width: 60px;
+                height: 60px;
+                background: linear-gradient(135deg, #00fff7 0%, #0066ff 100%);
+                border-radius: 50%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                z-index: 10;
+                animation: swipeAnimation 1.5s ease-in-out;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+                cursor: pointer;
+                opacity: 0;
+            }
+            .swipe-indicator i {
+                color: white;
+                font-size: 26px;
+                filter: drop-shadow(0 2px 3px rgba(0,0,0,0.4));
+            }
+            .swipe-text {
+                color: white;
+                font-size: 11px;
+                font-weight: bold;
+                margin-top: 3px;
+                text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+                letter-spacing: 1px;
+            }
+            @keyframes swipeAnimation {
+                0% { 
+                    right: -40px; 
+                    opacity: 0;
+                    transform: translateY(-50%) scale(0.6);
+                }
+                20% { 
+                    opacity: 1;
+                    transform: translateY(-50%) scale(1.1);
+                }
+                80% { 
+                    opacity: 1;
+                    transform: translateY(-50%) scale(1.1);
+                }
+                100% { 
+                    right: calc(100% + 40px); 
+                    opacity: 0;
+                    transform: translateY(-50%) scale(0.6);
+                }
+            }
+        }
+    </style>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             function isSmallScreen() {
@@ -642,36 +690,29 @@
     <script src="js/2282-js-setupCarousel.js" defer></script>
     <script src="js/3557-js-custom.js" defer></script>
     <script>
-	
-	function showApplePayModal() {
-    if (!validateInput()) return;
-	
-    
-    const checkoutModal = bootstrap.Modal.getInstance(document.getElementById('checkoutModal'));
-    
-    
+        function showApplePayModal() {
+            if (!validateInput()) return;
+            
+            const checkoutModal = bootstrap.Modal.getInstance(document.getElementById('checkoutModal'));
+            
+            const applePayModal = new bootstrap.Modal(document.getElementById('applePayModal'), {
+                backdrop: true
+            });
+            applePayModal.show();
+        }
 
-    const applePayModal = new bootstrap.Modal(document.getElementById('applePayModal'), {
-        backdrop: true
-    });
-    applePayModal.show();
-}
+        function showPaypalModal() {
+            if (!validateInput()) return;
+            document.getElementById('paypalAmount').innerText = (window.currentAmount || '0');
+            
+            const checkoutModal = bootstrap.Modal.getInstance(document.getElementById('checkoutModal'));
 
-function showPaypalModal() {
-    if (!validateInput()) return;
-    document.getElementById('paypalAmount').innerText = '$' + (window.currentAmount || '0');
-    
-
-    const checkoutModal = bootstrap.Modal.getInstance(document.getElementById('checkoutModal'));
-    checkoutModal.hide();
-
-    const paypalModal = new bootstrap.Modal(document.getElementById('paypalModal'), {
-        backdrop: 'static'
-    });
-    paypalModal.show();
-}
-	
-	
+            const paypalModal = new bootstrap.Modal(document.getElementById('paypalModal'), {
+                backdrop: true
+            });
+            paypalModal.show();
+        }
+        
         function openCheckoutModal(title, description, price, stripeLink) {
             document.getElementById('productTitle').innerText = title;
             document.getElementById('productDescription').innerText = description;
@@ -681,16 +722,9 @@ function showPaypalModal() {
             if (priceMatch) {
                 window.currentAmount = '$' + priceMatch[1];
             }
-			$('.modal').modal('hide');
+            $('.modal').modal('hide');
             const checkoutModal = new bootstrap.Modal(document.getElementById('checkoutModal'), { backdrop: true });
             checkoutModal.show();
-        }
-        
-        function showPaypalModal() {
-            if (!validateInput()) return;
-            document.getElementById('paypalAmount').innerText = window.currentAmount || '0';
-            const paypalModal = new bootstrap.Modal(document.getElementById('paypalModal'), {});
-            paypalModal.show();
         }
         
         function validateInput() {
