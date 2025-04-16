@@ -808,7 +808,6 @@ function validateInput() {
     const checkbox = document.getElementById('tosCheckbox');
     let isValid = true;
 
-    // Validate Discord username first
     if (!input.value.trim()) {
         input.classList.add('invalid-input');
         input.style.animation = 'none';
@@ -817,19 +816,19 @@ function validateInput() {
         }, 10);
         isValid = false;
         
-        // Remove checkbox validation if Discord is empty
+
         checkbox.classList.remove('invalid-checkbox');
         const tooltip = document.getElementById('checkboxTooltip');
         if (tooltip) {
             tooltip.remove();
         }
         
-        return false; // Exit early since Discord is required first
+        return false;
     } else {
         input.classList.remove('invalid-input');
     }
 
-    // Only validate checkbox if Discord is filled
+
     if (!checkbox.checked) {
         checkbox.classList.add('invalid-checkbox');
         checkbox.style.animation = 'none';
@@ -838,7 +837,7 @@ function validateInput() {
         }, 10);
         isValid = false;
         
-        // Add tooltip if not already present
+
         if (!document.getElementById('checkboxTooltip')) {
             const tooltip = document.createElement('span');
             tooltip.id = 'checkboxTooltip';
@@ -862,7 +861,7 @@ function validateInput() {
         }
     } else {
         checkbox.classList.remove('invalid-checkbox');
-        // Remove tooltip if exists
+
         const tooltip = document.getElementById('checkboxTooltip');
         if (tooltip) {
             tooltip.remove();
@@ -913,11 +912,12 @@ function validateInput() {
         </div>
 <div class="footer-bottom">
     <div class="footer-container">
-        <p class="copyright">&copy; 2025 Undo Xbox Services</p>
+        <p class="copyright">&copy; 2025 Undo Xbox Services. This is an independent service and is not affiliated with, sponsored by, or endorsed by Microsoft Corporation, Xbox, or any of their subsidiaries.</p>
         <div class="footer-links">
             <a href="/tos" class="footer-link">Terms of Service</a>
             <a href="/privacy" class="footer-link">Privacy Policy</a>
             <a href="/refund" class="footer-link">Refund Policy</a>
+            <a href="/disclaimer" class="footer-link">Legal Disclaimer</a>
         </div>
     </div>
 </div>
