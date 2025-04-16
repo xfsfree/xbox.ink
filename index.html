@@ -52,6 +52,16 @@
                         <label for="discordUsername" class="form-label">Discord username</label>
                         <input type="text" class="form-control" id="discordUsername" placeholder="Enter your Discord username" required>
                     </div>
+                <div class="mb-3 form-check">
+    <input type="checkbox" class="form-check-input" id="tosCheckbox" required>
+    <label class="form-check-label" for="tosCheckbox">
+        I agree to the 
+        <a href="/tos" target="_blank">Terms of Service</a> 
+        and 
+        <a href="/policy" target="_blank">Privacy Policy</a>
+    </label>
+</div>
+
                     <div class="payment-options">
                         <button class="btn pay-with-card w-100 mb-2" onclick="processPayment()" style="background: #27292d; display: flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid #ccc;">
                             <img src="images/visa.png" alt="Visa" loading="lazy">
@@ -793,19 +803,74 @@
             checkoutModal.show();
         }
         
-        function validateInput() {
-            const input = document.getElementById('discordUsername');
-            if (!input.value.trim()) {
-                input.classList.add('invalid-input');
-                input.style.animation = 'none';
-                setTimeout(() => {
-                    input.style.animation = '';
-                }, 10);
-                return false;
-            }
-            input.classList.remove('invalid-input');
-            return true;
+function validateInput() {
+    const input = document.getElementById('discordUsername');
+    const checkbox = document.getElementById('tosCheckbox');
+    let isValid = true;
+
+    // Validate Discord username first
+    if (!input.value.trim()) {
+        input.classList.add('invalid-input');
+        input.style.animation = 'none';
+        setTimeout(() => {
+            input.style.animation = '';
+        }, 10);
+        isValid = false;
+        
+        // Remove checkbox validation if Discord is empty
+        checkbox.classList.remove('invalid-checkbox');
+        const tooltip = document.getElementById('checkboxTooltip');
+        if (tooltip) {
+            tooltip.remove();
         }
+        
+        return false; // Exit early since Discord is required first
+    } else {
+        input.classList.remove('invalid-input');
+    }
+
+    // Only validate checkbox if Discord is filled
+    if (!checkbox.checked) {
+        checkbox.classList.add('invalid-checkbox');
+        checkbox.style.animation = 'none';
+        setTimeout(() => {
+            checkbox.style.animation = 'shake 0.5s';
+        }, 10);
+        isValid = false;
+        
+        // Add tooltip if not already present
+        if (!document.getElementById('checkboxTooltip')) {
+            const tooltip = document.createElement('span');
+            tooltip.id = 'checkboxTooltip';
+            tooltip.innerHTML = '?';
+            tooltip.title = 'You must agree to the Terms of Service and Privacy Policy to continue';
+            tooltip.style.cssText = `
+                display: inline-block;
+                margin-left: 8px;
+                width: 18px;
+                height: 18px;
+                background: #f44336;
+                color: white;
+                border-radius: 50%;
+                text-align: center;
+                line-height: 18px;
+                font-size: 12px;
+                cursor: help;
+                position: relative;
+            `;
+            checkbox.parentNode.insertBefore(tooltip, checkbox.nextSibling);
+        }
+    } else {
+        checkbox.classList.remove('invalid-checkbox');
+        // Remove tooltip if exists
+        const tooltip = document.getElementById('checkboxTooltip');
+        if (tooltip) {
+            tooltip.remove();
+        }
+    }
+
+    return isValid;
+}
         
         function processPayment() {
             if (!validateInput()) return;
