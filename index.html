@@ -52,34 +52,12 @@
                         <label for="discordUsername" class="form-label">Discord username</label>
                         <input type="text" class="form-control" id="discordUsername" placeholder="Enter your Discord username" required>
                     </div>
-                <div class="mb-3 form-check">
-    <input type="checkbox" class="form-check-input" id="tosCheckbox" required>
-    <label class="form-check-label" for="tosCheckbox">
-        I agree to the 
-        <a href="/tos" target="_blank">Terms of Service</a> 
-        and 
-        <a href="/policy" target="_blank">Privacy Policy</a>
-    </label>
-</div>
+
 
                     <div class="payment-options">
-                        <button class="btn pay-with-card w-100 mb-2" onclick="processPayment()" style="background: #27292d; display: flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid #ccc;">
-                            <img src="images/visa.png" alt="Visa" loading="lazy">
-                            <img src="images/mastercard.png" alt="Mastercard" loading="lazy">
-                            <img src="images/amex.png" alt="Amex" style="width: 30px; height: 30px;" loading="lazy">
-                            <img src="images/discover.jpg" alt="Discover" style="width: 30px; height: 20px;" loading="lazy">
-                            <img src="images/union.png" alt="UnionPay" style="height: 30px; width: 30px;" loading="lazy">
-                        </button>
-                        <button class="btn pay-with-card w-100 mb-2" onclick="processPayment()" style="background: black; display: flex; align-items: center; justify-content: center; gap: 10px; border: 1px solid #ccc;">
-                            <img src="images/applepay.png" alt="Apple Pay" style="width: 65px; height: 28px;" loading="lazy">
-                        </button>
                         <button class="btn pay-with-paypal w-100 mb-2" onclick="processPayment()" style="background-color: #ffc43b; align-items: center;">
                             <img src="images/paypal.png" alt="PayPal" style="height: 28px; width: 100px;" loading="lazy">
                         </button>
-                        <button class="btn pay-with-amazon w-100 mb-2" onclick="processPayment()" style="background: #fad481; display: flex; align-items: center; border: 1px solid #ccc;">
-                            <img src="images/amazon.png" alt="Visa" loading="lazy" style="height: 28px;">
-                        </button>
-                        <button class="btn pay-with-bank w-100 mb-2" onclick="processPayment()">Bank Transfer</button>
                     </div>
                 </div>
             </div>
